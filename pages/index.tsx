@@ -1,8 +1,10 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home(props: any) {
+  console.log('homepage', props)
   return (
     <div className={styles.container}>
       <Head>
@@ -49,6 +51,10 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+        </div>
+        <Link href="/skl-page/sklPage">点击跳转测试页面</Link>
+        <div>
+          <Link href="/fetch/fetch">点击跳转获取数据页面</Link>
         </div>
       </main>
 
