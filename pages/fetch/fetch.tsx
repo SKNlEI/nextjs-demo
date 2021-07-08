@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 
 const Fetch = () => {
-  const url = location.origin
   const [list, setList] = useState([])
-
   const handleClick = async () => {
-    const data = await fetch(`${url}/api/linkList`, { method: 'POST'})
+    const data = await fetch('/api/linkList', { method: 'POST'})
     const result = await data.json()
     setList(result.obj)
   }
