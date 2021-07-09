@@ -1,10 +1,15 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { getCurrentEnv } from '../utils/tools'
 
 export default function Home(props: any) {
-  console.log('homepage', props)
+
+  useEffect(() => {
+    console.log('首页加载了===', getCurrentEnv())
+  }, [])
   return (
     <div className={styles.container}>
       <Head>
@@ -14,62 +19,21 @@ export default function Home(props: any) {
       </Head>
 
       <main className={styles.main}>
+        <h3 className={styles.skl}>this is skl config project</h3>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-        <Link href="/skl-page/sklPage">点击跳转测试页面</Link>
-        <div>
+        <Link href="/skl-page/sklPage">点击跳转预渲染</Link>
+        <div style={{ margin: '15px 0' }}>
           <Link href="/fetch/fetch">点击跳转获取数据页面</Link>
         </div>
+        <div>
+          <Link href="/list/[...skl]" as="/list/1/2">点击跳转动态路由页面</Link>
+        </div>
+        <div style={{ marginTop: '15px' }}>
+          <Link href="/server-render/serverRender">服务端渲染</Link>
+        </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }

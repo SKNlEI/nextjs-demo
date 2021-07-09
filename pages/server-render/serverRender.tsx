@@ -1,12 +1,19 @@
-import React from 'react'
 
-interface IProps {
+import React, { useEffect } from 'react'
+import { GetServerSideProps } from 'next';
+export interface IProps {
   testData: any
 }
 
-const SklPage = (props: IProps) => {
-  // console.log(props)
+const ServerRender = (props: IProps) => {
   const { testData = { obj: [] } } = props
+  
+  useEffect(() => {
+    console.log('展示数据了')
+  }, [])
+
+  console.log(props)
+
   return (
     <div style={{ fontSize: '20px', wordBreak: 'break-all' }}>
       {testData.obj.map((v: any, i: number) => (
@@ -19,11 +26,11 @@ const SklPage = (props: IProps) => {
   )
 }
 
-export default SklPage
+export default ServerRender
 
-export async function getStaticProps() {
-  // https://mcs-mimp-web.sf-express.com/mcs-mimp/config/frontLinkList
-  // http://localhost:3000/api/hello
+// 服务端渲染
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // console.log('contentx====>', context)
   const res = await fetch('https://mcs-mimp-web.sf-express.com/mcs-mimp/config/frontLinkList')
   const testData = await res.json()
 
